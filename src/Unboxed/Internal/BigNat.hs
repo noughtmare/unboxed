@@ -158,7 +158,7 @@ instance Integral BigNat# where
   {-# inline divMod #-}
 
   toInteger (BigNat# bn)
-    | isTrue# ((coerce GHC.bigNatSize# bn ==# 1#) `andI#` (i# >=# 0#)) = IS i#
+    | isTrue# ((coerce GHC.bigNatSize# bn <=# 1#) `andI#` (i# >=# 0#)) = IS i#
     | True = IP bn
     where i# = coerce GHC.bigNatToInt# bn
   {-# inline toInteger #-}
